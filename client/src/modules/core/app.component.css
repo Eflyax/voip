@@ -74,3 +74,34 @@ nav a.router-link-active {
     color: white;
     padding: 10px 20px;
 }
+
+.panel-heading {
+    background-color: #2b2d38;
+    margin: 10px 60px 0 0;
+    padding: 8px 5px 8px 30px;
+    font-size: 13px;
+    border-radius: 20px;
+}
+
+.panel-default a {
+    color: #cccccc;
+}
+
+.panel-link {
+    display: block;
+    text-decoration: none;
+}
+
+.panel-body p {
+    color: white;
+    margin: 0 0 0 30px;
+}
+
+.panel-body p:before {
+    content: "•";
+    font-size: 30px;
+    margin: -12px 0 0 -17px;
+    padding: 0;
+    position: absolute;
+    color: #4e61aa;
+}

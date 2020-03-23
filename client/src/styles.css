@@ -1,15 +1,18 @@
+* {
+    font-family: Verdana;
+}
+
+body, html {
+    height: 100%;
+}
+
 h2 {
     color: #444;
     font-weight: lighter;
 }
 
-body,html {
-    height: 100%;
-}
-
 body, input[text], button {
     color: #888;
-    font-family: Cambria, Georgia;
 }
 
 button {
@@ -17,6 +20,3 @@ button {
     font-size: 14px
 }
 
-* {
-    font-family: Arial;
-}
