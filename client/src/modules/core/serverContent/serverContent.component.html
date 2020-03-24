@@ -1,0 +1,44 @@
+<div id="server-content">
+    <div id="server-header">
+        Nootgaming.cz
+        <br>
+        <span class="badge badge-dark">
+            <i class="fa fa-users"></i> <span style="color: #00c58f"> 4 online</span>
+        </span>
+    </div>
+
+    <div id="rooms-list">
+
+        <div>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+                <div class="panel panel-default" *ngFor="let room of roomList">
+
+                    <div
+                            [ngStyle]="{
+                            'background-image': 'url(' + room.background.image + ')',
+                            'background-size': room.background.width+'px '+room.background.height+'px',
+                            'background-repeat': 'no-repeat',
+                            'background-position': room.background.position
+                            }"
+                            class="panel-heading" role="tab" id="collapse-heading-1"
+                    >
+                        <a role="button" class="panel-link" data-toggle="collapse" data-parent="#accordion"
+                           href="#collapse-category-1" aria-expanded="false" aria-controls="collapse-category-1">
+                            <i class="fa fa-sort-down"></i>
+                            {{room.name}}
+                        </a>
+                    </div>
+
+                    <div class="panel-collapse collapse" id="collapse-category-1" role="tabpanel"
+                         aria-labelledby="collapse-heading-1">
+                        <div class="panel-body">
+                            <p>Eflyax</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

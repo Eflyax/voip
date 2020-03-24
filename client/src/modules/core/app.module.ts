@@ -7,8 +7,8 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {AuthenticationModule} from '../authentication/authentication.module'
-import {DefaultModule} from '../default/default.module';
+import {SidebarComponent} from './sidebar/sidebar.component';
+import {ServerContentComponent} from './serverContent/serverContent.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -27,11 +27,11 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        AuthenticationModule,
-        DefaultModule,
     ],
     declarations: [
         AppComponent,
+        SidebarComponent,
+        ServerContentComponent,
     ],
     providers: [],
     bootstrap: [AppComponent]
