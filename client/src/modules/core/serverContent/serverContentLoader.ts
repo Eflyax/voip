@@ -22,7 +22,7 @@ export class ServerContentLoader {
             },
             {
                 'id': 1,
-                'name': 'La case de papel',
+                'name': 'La casa de papel',
                 'background': {
                     'color': '',
                     'image': '',

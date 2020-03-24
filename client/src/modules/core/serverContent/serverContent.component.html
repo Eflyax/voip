@@ -8,30 +8,31 @@
     </div>
 
     <div id="rooms-list">
-
         <div>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
                 <div class="panel panel-default" *ngFor="let room of roomList">
-
                     <div
-                            [ngStyle]="{
-                            'background-image': 'url(' + room.background.image + ')',
-                            'background-size': room.background.width+'px '+room.background.height+'px',
-                            'background-repeat': 'no-repeat',
-                            'background-position': room.background.position
+                            [ngStyle]="
+                            {
+                                'background-image': 'url(' + room.background.image + ')',
+                                'background-size': room.background.width+'px '+room.background.height+'px',
+                                'background-repeat': 'no-repeat',
+                                'background-position': room.background.position
                             }"
-                            class="panel-heading" role="tab" id="collapse-heading-1"
-                    >
+                            class="panel-heading" role="tab"
+                            [attr.id]="'collapse-heading-' + room.id">
                         <a role="button" class="panel-link" data-toggle="collapse" data-parent="#accordion"
-                           href="#collapse-category-1" aria-expanded="false" aria-controls="collapse-category-1">
+                           [attr.href]="'#collapse-category-' + room.id"
+                           aria-expanded="false"
+                           [attr.aria-controls]="'#collapse-category-' + room.id"
+                        >
                             <i class="fa fa-sort-down"></i>
                             {{room.name}}
                         </a>
                     </div>
 
-                    <div class="panel-collapse collapse" id="collapse-category-1" role="tabpanel"
-                         aria-labelledby="collapse-heading-1">
+                    <div class="panel-collapse collapse" [attr.id]="'collapse-category-' + room.id" role="tabpanel"
+                         [attr.aria-labelledby]="'collapse-heading-' + room.id">
                         <div class="panel-body">
                             <p>Eflyax</p>
                         </div>
