@@ -18,18 +18,20 @@ export class ServerContentLoader {
                     'width': 100,
                     'height': 30,
                     'position': 'right'
-                }
+                },
+                users: []
             },
             {
                 'id': 1,
                 'name': 'La casa de papel',
                 'background': {
                     'color': '',
-                    'image': '',
-                    'width': 100,
-                    'height': 30,
+                    'image': '/assets/img/papirna.png',
+                    'width': 150,
+                    'height': 40,
                     'position': 'right'
-                }
+                },
+                users: [{id: 0, name: 'Eflyax'}]
             },
             {
                 'id': 2,
@@ -40,7 +42,8 @@ export class ServerContentLoader {
                     'width': 150,
                     'height': 70,
                     'position': 'right'
-                }
+                },
+                users: [{id: 1, name: 'Exapos'}]
             },
             {
                 'id': 3,
@@ -51,7 +54,8 @@ export class ServerContentLoader {
                     'width': 100,
                     'height': 30,
                     'position': 'right'
-                }
+                },
+                users: [{id: 2, name: 'BoldaCZ'}, {id: 3, name: 'NotesCZ'}]
             },
         ];
 

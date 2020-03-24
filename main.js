@@ -11,12 +11,12 @@ function createWindow() {
   let config = YAML.parse(configRaw);
 
   mainWindow = new BrowserWindow({
-    width: 300,
+    width: 400,
     height: 600,
     minHeight: 600,
-    minWidth: 300,
-    maxHeight: 600,
-    maxWidth: 300,
+    minWidth: 400,
+    // maxHeight: 600,
+    // maxWidth: 400,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
