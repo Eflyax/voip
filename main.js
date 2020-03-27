@@ -23,6 +23,7 @@ function createWindow() {
   });
   mainWindow.setMenu(null);
   mainWindow.loadURL(config.url);
+  console.log(config.url);
   mainWindow.on('closed', function () {
     mainWindow = null;
   });

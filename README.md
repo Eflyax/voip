@@ -1,10 +1,4 @@
-# Sielaff - desktop app
+VOIP
 
+The best of Teamspeak and Discord in one app
 
-## Project setup
-`npm install`
-## Build
-### Windows
-`npx electron-builder --win`
-### MacOS
-`npx electron-builder --mac`
