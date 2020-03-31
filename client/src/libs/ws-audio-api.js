@@ -47,22 +47,41 @@
       this.sampler = new Resampler(44100, this.config.codec.sampleRate, 1, this.config.codec.bufferSize);
       this.parentSocket = socket;
       this.encoder = new OpusEncoder(this.config.codec.sampleRate, this.config.codec.channels, this.config.codec.app, this.config.codec.frameDuration);
+
       var _this = this;
 
+      this.setSensitivity = function (val) {
+        this._sensitivity = val;
+      }
+
       this._makeStream = function (onError) {
-        navigator.getUserMedia(
-          {audio: true}
-          , function (stream) {
+        this._sensitivity = 2;
+        navigator.getUserMedia({ audio: true }, function (stream) {
           _this.stream = stream;
           _this.audioInput = audioContext.createMediaStreamSource(stream);
           _this.gainNode = audioContext.createGain();
           _this.recorder = audioContext.createScriptProcessor(_this.config.codec.bufferSize, 1, 1);
+          _this.analyser = audioContext.createAnalyser();
+          _this.analyser.smoothingTimeConstant = 0.8;
+          _this.analyser.fftSize = 1024;
+          _this.audioInput.connect(_this.analyser);
+          _this.analyser.connect(_this.recorder);
           _this.recorder.onaudioprocess = window.audioProcess = function (e) {
-            var resampled = _this.sampler.resampler(e.inputBuffer.getChannelData(0));
-            var packets = _this.encoder.encode_float(resampled);
-            for (var i = 0; i < packets.length; i++) {
-              if (_this.socket.readyState == 1) {
-                _this.socket.send(packets[i]);
+            var array = new Uint8Array(_this.analyser.frequencyBinCount);
+            _this.analyser.getByteFrequencyData(array);
+            var values = 0;
+            var length = array.length;
+            for (var i = 0; i < length; i++) {
+              values += (array[i]);
+            }
+            var average = values / length;
+            if (average > _this._sensitivity) {
+              var resampled = _this.sampler.resampler(e.inputBuffer.getChannelData(0));
+              var packets = _this.encoder.encode_float(resampled);
+              for (var i = 0; i < packets.length; i++) {
+                if (_this.socket.readyState == 1) {
+                  _this.socket.send(packets[i]);
+                }
               }
             }
           };
