@@ -22,6 +22,7 @@
     "electron-builder": "^21.2.0"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "fs": "0.0.1-security",
     "yaml": "^1.7.0"
   }
