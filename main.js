@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron');
+const { app, BrowserWindow, ipcRenderer } = require('electron');
 const path = require('path');
 const YAML = require('yaml');
 const fs = require('fs');
@@ -18,15 +18,19 @@ function createWindow() {
     // maxHeight: 600,
     // maxWidth: 400,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      webviewTag: true,
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true
     }
   });
+  mainWindow.loadFile(path.join('index.html'));
   mainWindow.setMenu(null);
-  console.log(config.url);
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+
 };
+
 
 app.on('ready', createWindow);
 
@@ -42,6 +46,9 @@ app.on('window-all-closed', function () {
 });
 
 app.on('activate', function () {
+
+  alert('ahoj');
+
   if (mainWindow === null) {
     createWindow();
   }
