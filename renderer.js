@@ -18,7 +18,7 @@ $webview.addEventListener('dom-ready', () => {
     ).then((value) => {console.log(value);  }) // The entire window object of the webview.
     .catch((error) => console.log(error));;
 */
-console.log($webview.getWebContents()[0]);
+console.log($webview.getWebContents());
 
     $webview.classList.remove('hide');
     setTimeout(() => {

@@ -2,54 +2,16 @@
 
 <head>
   <title>VOIP</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="libs/jquery.min.js"></script>
   <script src="libs/libopus.js"></script>
   <script src="libs/opus.js"></script>
   <script src="libs/ws-audio-api.js"></script>
   <script src="libs/xaudio.js"></script>
-  <script>
-    var player;
-    var streamer;
-    var volumeIndicator;
-    var microphoneSensitivity;
 
-    $(document).ready(function () {
-      player = new WSAudioAPI.Player();
-      streamer = new WSAudioAPI.Streamer();
-      var mute = document.querySelector('.mute');
-      var volume = document.querySelector('#volume');
-      volumeIndicator = document.querySelector('#volumeIndicator');
-      volumeIndicator.value = player.getVolume();
-
-      function voiceMute() {
-        if (mute.id == "") {
-          streamer.mute();
-          mute.id = "activated";
-          mute.innerHTML = "Unmute";
-        } else {
-          streamer.unMute();
-          mute.id = "";
-          mute.innerHTML = "Mute";
-        }
-      }
-
-    //  streamer.start();
-    //  player.start();
-    });
-
-    function setVol(val) {
-      player.setVolume(val);
-      volumeIndicator.value = player.getVolume();
-    }
-
-    function setMicrophoneSensitivity(val) {
-      streamer.setSensitivity(val);
-    }
-  </script>
 </head>
 
 <body>
-  <button id="foobar">FOOBAR</button>
+  <button id="foobar">FOOBAR_</button>
   <button onclick="streamer.start()">Start stream</button>
   <button onclick="streamer.stop()">Stop stream</button>
   <button onclick="player.start()">Play stream</button>
@@ -70,6 +32,48 @@
 
   <input type="text" id="volumeIndicator">
 
+  <script>
+    var player;
+    var streamer;
+    var volumeIndicator;
+    var microphoneSensitivity;
+
+    document.addEventListener('DOMContentLoaded', function(){
+     
+      player = new WSAudioAPI.Player();
+      streamer = new WSAudioAPI.Streamer();
+      var mute = document.querySelector('.mute');
+      var volume = document.querySelector('#volume');
+      volumeIndicator = document.querySelector('#volumeIndicator');
+      volumeIndicator.value = player.getVolume();
+
+      function voiceMute() {
+        if (mute.id == "") {
+          streamer.mute();
+          mute.id = "activated";
+          mute.innerHTML = "Unmute";
+        } else {
+          streamer.unMute();
+          mute.id = "";
+          mute.innerHTML = "Mute";
+        }
+      }
+
+      streamer.start();
+      player.start();
+    
+
+    function setVol(val) {
+      player.setVolume(val);
+      volumeIndicator.value = player.getVolume();
+    }
+
+    function setMicrophoneSensitivity(val) {
+      streamer.setSensitivity(val);
+    }
+    }, false);
+  
+  </script>
 </body>
 
 </html>
