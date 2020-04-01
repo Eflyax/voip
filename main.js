@@ -4,7 +4,6 @@ const YAML = require('yaml');
 const fs = require('fs');
 const ipc = require('electron').ipcMain;
 
-
 let mainWindow;
 function createWindow() {
 
@@ -38,11 +37,6 @@ function createWindow() {
 };
 
 app.on('ready', createWindow);
-
-app.on('certificate-error', function (event, webContents, url, error, certificate, callback) {
-  event.preventDefault();
-  callback(true);
-});
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
