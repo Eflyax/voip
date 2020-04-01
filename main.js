@@ -1,10 +1,11 @@
-const {app, BrowserWindow} = require('electron');
+const { app, BrowserWindow, ipcRenderer } = require('electron');
 const path = require('path');
 const YAML = require('yaml');
 const fs = require('fs');
+const ipc = require('electron').ipcMain;
+
 
 let mainWindow;
-
 function createWindow() {
 
   let configRaw = fs.readFileSync(__dirname + '/config.yml', 'utf8');
@@ -18,19 +19,27 @@ function createWindow() {
     // maxHeight: 600,
     // maxWidth: 400,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      webviewTag: true,
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      webSecurity: false,
+      allowDisplayingInsecureContent: true,
+      allowRunningInsecureContent: true
     }
   });
+  mainWindow.loadFile(path.join('client/src/index.html'));
+  //mainWindow.webContents.openDevTools();
+
   mainWindow.setMenu(null);
-  console.log(config.url);
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+
 };
 
 app.on('ready', createWindow);
 
-app.on('certificate-error', (event, webContents, url, error, certificate, callback) => {
+app.on('certificate-error', function (event, webContents, url, error, certificate, callback) {
   event.preventDefault();
   callback(true);
 });
@@ -45,4 +54,8 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipc.on('update-notify-value', (event, args) => {
+  mainWindow.setSize(800, 600);
 });

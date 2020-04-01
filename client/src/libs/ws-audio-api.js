@@ -17,7 +17,7 @@
       bufferSize: 4096
     },
     server: {
-      host: window.location.hostname,
+      host: 'voip.eflyax.cz',
       port: 5000
     }
   };

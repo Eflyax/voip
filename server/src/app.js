@@ -13,6 +13,7 @@ var httpsServer = https.createServer({
 
 var wss = new WebSocketServer({ server: httpsServer });
 
+console.log('Listening on port'+wsPort);
 var connectionId = 0;
 wss.on('connection', function (ws) {
   console.log('Client connected');
