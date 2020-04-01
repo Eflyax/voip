@@ -2,8 +2,8 @@ const { app, BrowserWindow, ipcRenderer } = require('electron');
 const path = require('path');
 const YAML = require('yaml');
 const fs = require('fs');
-const https = require('https');
-const express = require('express');
+const ipc = require('electron').ipcMain;
+
 
 let mainWindow;
 function createWindow() {
@@ -12,7 +12,7 @@ function createWindow() {
   let config = YAML.parse(configRaw);
 
   mainWindow = new BrowserWindow({
-    width: 900,
+    width: 400,
     height: 600,
     minHeight: 600,
     minWidth: 400,
@@ -54,4 +54,8 @@ app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+ipc.on('update-notify-value', (event, args) => {
+  mainWindow.setSize(800, 600);
 });
