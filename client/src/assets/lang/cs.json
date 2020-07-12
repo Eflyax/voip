@@ -1,9 +1,0 @@
-{
-  "home": "Domů",
-  "registration": "Registrace",
-  "email": "E-mail",
-  "password": "Heslo",
-  "passwordAgain": "Heslo znovu",
-  "registerYourself": "Registrovat se",
-  "passwordIsShort": "Heslo musí mít alespoň {{value}} znaků"
-}
